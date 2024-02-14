@@ -50,23 +50,23 @@
   width: max-content;
 }
 
-.travel {
+.category.travel {
   background-color: #ff7857;
 }
 
-.food {
+.category.food {
   background-color: #7fb881;
 }
 
-.fashion {
+.category.fashion {
   background-color: #ff7887;
 }
 
-.culture {
+.category.culture {
   background-color: #7f7f7f;
 }
 
-.coding {
+.category.coding {
   background-color: #775aec;
 }
 
@@ -82,10 +82,4 @@
 
 .date {
   color: gray;
-}
-
-@media screen and (max-width: 1024px) {
-  .container {
-    display: none;
-  }
 }
