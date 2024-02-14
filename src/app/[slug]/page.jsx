@@ -1,5 +1,7 @@
 import Image from "next/image";
 import styles from "./singlePage.module.css";
+import Menu from "@/components/Menu/Menu";
+import Comments from "@/components/comments/Comments";
 const SinglePage = () => {
   return (
     <div className={styles.container}>
@@ -48,7 +50,11 @@ const SinglePage = () => {
               necessitatibus assumenda error distinctio iste!
             </p>
           </div>
+          <div className={styles.comment}>
+            <Comments />
+          </div>
         </div>
+        <Menu />
       </div>
     </div>
   );
