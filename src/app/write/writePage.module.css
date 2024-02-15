@@ -37,6 +37,7 @@
 .input {
   padding: 50px;
   font-size: 64px;
+  color: var(--textColor);
   border: none;
   outline: none;
   background-color: transparent;
@@ -60,4 +61,7 @@
   color: white;
   cursor: pointer;
   border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
