@@ -78,6 +78,7 @@ const WritePage = () => {
         desc: value,
         img: media,
         slug: slugify(title),
+        catSlug: "fashion",
       }),
     });
     console.log(res);
@@ -90,6 +91,7 @@ const WritePage = () => {
         className={styles.input}
         onChange={(e) => setTitle(e.target.value)}
       />
+      {/* TODO ADD CATEGORY SELECT */}
       <div className={styles.editor}>
         <button className={styles.button} onClick={() => setOpen(!open)}>
           <Image src="/plus.png" alt="" width={16} height={16} />

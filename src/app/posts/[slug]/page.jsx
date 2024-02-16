@@ -4,9 +4,12 @@ import Menu from "@/components/Menu/Menu";
 import Comments from "@/components/comments/Comments";
 
 const getData = async (slug) => {
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `http://localhost:3000/api/posts/${slug}?popular=true`,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Something went wrong!");
@@ -44,7 +47,7 @@ const SinglePage = async ({ params }) => {
         </div>
         {data?.img && (
           <div className={styles.imageContainer}>
-            <Image src="/p1.jpeg" alt="" fill className={styles.image} />
+            <Image src={data?.img} alt="" fill className={styles.image} />
           </div>
         )}
       </div>
