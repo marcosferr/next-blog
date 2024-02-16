@@ -8,13 +8,14 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import styles from "./writePage.module.css";
-import ReactQuill from "react-quill";
+
 import "react-quill/dist/quill.bubble.css";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { app } from "@/utils/firebase";
 const storage = getStorage(app);
 const WritePage = () => {
+  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [media, setMedia] = useState("");
