@@ -4,7 +4,7 @@ import Menu from "@/components/Menu/Menu";
 import Comments from "@/components/comments/Comments";
 
 const getData = async (slug) => {
-  const res = await fetch(`/${slug}?popular=true`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/${slug}`, {
     cache: "no-store",
   });
 
