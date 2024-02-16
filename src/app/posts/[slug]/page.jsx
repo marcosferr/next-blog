@@ -4,12 +4,9 @@ import Menu from "@/components/Menu/Menu";
 import Comments from "@/components/comments/Comments";
 
 const getData = async (slug) => {
-  const res = await fetch(
-    `http://localhost:3000/api/posts/${slug}?popular=true`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`${process.env.URL}/${slug}?popular=true`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Something went wrong!");
