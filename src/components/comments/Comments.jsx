@@ -20,7 +20,7 @@ const fetcher = async (url) => {
 const Comments = ({ postSlug }) => {
   const { status } = useSession();
 
-  const { data, mutate, isLoading } = useSWR(
+  const { data, mutate, isLoading, error } = useSWR(
     `comments?postSlug=${postSlug}`,
     fetcher
   );
@@ -36,6 +36,10 @@ const Comments = ({ postSlug }) => {
       console.error(error);
     }
   };
+
+  if (error) {
+    return <div>Something went wrong</div>;
+  }
   return (
     <div className={styles.container}>
       <h1 className={styles.title}> Comments</h1>
