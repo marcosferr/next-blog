@@ -4,26 +4,21 @@ import styles from "./comments.module.css";
 import Link from "next/link";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "@/app/axios";
 
-const fetcher = async (url) => {
+const getData = async (slug) => {
   try {
-    const response = await axios.get(url);
-
+    const response = await axios.get(`comments/?postSlug=${slug}`);
+    console.log(response);
     return response.data;
   } catch (error) {
-    throw new Error(error.message);
+    console.error(error);
   }
 };
 const Comments = ({ postSlug }) => {
   const { status } = useSession();
-
-  const { data, mutate, isLoading, error } = useSWR(
-    `comments?postSlug=${postSlug}`,
-    fetcher,
-    { revalidateOnFocus: false }
-  );
+  const [data, setData] = useState([]);
 
   const [desc, setDesc] = useState("");
 
@@ -31,15 +26,26 @@ const Comments = ({ postSlug }) => {
     setDesc("");
     try {
       await axios.post("comments", { desc, postSlug });
-      mutate();
+      const response = await axios.get(`comments/?postSlug=${postSlug}`);
+      setData(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  if (error) {
-    return <div>Something went wrong</div>;
-  }
+  useEffect(() => {
+    async function fetchData() {
+      const fetchedData = await getData(postSlug);
+
+      setData(fetchedData);
+    }
+    fetchData();
+  }, [postSlug]);
+
+  if (!data) return <div>Loading...</div>;
+
+  if (data.length === 0) return <div>No comments yet</div>;
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}> Comments</h1>
@@ -62,30 +68,29 @@ const Comments = ({ postSlug }) => {
       )}
 
       <div className={styles.comments}>
-        {isLoading
-          ? "loading"
-          : data?.map((item) => (
-              <div className={styles.comment} key={item._id}>
-                <div className={styles.user}>
-                  {item?.user?.image && (
-                    <Image
-                      src={item.user.image}
-                      alt=""
-                      width={50}
-                      height={50}
-                      className={styles.image}
-                    />
-                  )}
-                  <div className={styles.userInfo}>
-                    <span className={styles.username}>{item.user.name}</span>
-                    <span className={styles.date}>
-                      {item.createdAt.substring(0, 10)}
-                    </span>
-                  </div>
+        {data &&
+          data?.map((item) => (
+            <div className={styles.comment} key={item._id}>
+              <div className={styles.user}>
+                {item?.user?.image && (
+                  <Image
+                    src={item.user.image}
+                    alt=""
+                    width={50}
+                    height={50}
+                    className={styles.image}
+                  />
+                )}
+                <div className={styles.userInfo}>
+                  <span className={styles.username}>{item.user.name}</span>
+                  <span className={styles.date}>
+                    {item.createdAt.substring(0, 10)}
+                  </span>
                 </div>
-                <p className={styles.desc}>{item.desc}</p>
               </div>
-            ))}
+              <p className={styles.desc}>{item.desc}</p>
+            </div>
+          ))}
       </div>
     </div>
   );
