@@ -7,7 +7,7 @@ import axios from "@/app/axios";
 const getData = async () => {
   try {
     const response = await axios.get("categories");
-
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error("Something went wrong!");
