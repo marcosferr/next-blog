@@ -2,21 +2,20 @@ import Image from "next/image";
 import Pagination from "../pagination/Pagination";
 import styles from "./cardList.module.css";
 import Card from "../card/Card";
+import axios from "@/app/axios";
 
 const getData = async (page, cat) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/posts?page=${page}&cat=${cat || ""}`,
-    {
-      cache: "no-store",
-    }
-  );
+  try {
+    const response = await axios.get(`posts?page=${page}&cat=${cat || ""}`, {
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    });
 
-  if (!res.ok) {
+    return response.data;
+  } catch (error) {
     throw new Error("Something went wrong!");
   }
-
-  const data = await res.json();
-  return data;
 };
 
 const CardList = async ({ page, cat }) => {

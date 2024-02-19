@@ -2,18 +2,16 @@ import Image from "next/image";
 import styles from "./singlePage.module.css";
 import Menu from "@/components/Menu/Menu";
 import Comments from "@/components/comments/Comments";
+import axios from "@/app/axios";
 
 const getData = async (slug) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/${slug}`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
+  try {
+    const response = await axios.get(`posts/${slug}`);
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
     throw new Error("Something went wrong!");
   }
-
-  const data = await res.json();
-  return data;
 };
 
 const SinglePage = async ({ params }) => {

@@ -5,14 +5,15 @@ import Link from "next/link";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import axios from "@/app/axios";
 
 const fetcher = async (url) => {
-  const res = await fetch(url);
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.message);
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
   }
-  return data;
 };
 
 const Comments = ({ postSlug }) => {
@@ -27,11 +28,12 @@ const Comments = ({ postSlug }) => {
 
   const handleSubmit = async () => {
     setDesc("");
-    await fetch("/api/comments", {
-      method: "POST",
-      body: JSON.stringify({ desc, postSlug }),
-    });
-    mutate();
+    try {
+      await axios.post("/api/comments", { desc, postSlug });
+      mutate();
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className={styles.container}>

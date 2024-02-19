@@ -8,14 +8,15 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import styles from "./writePage.module.css";
-
 import "react-quill/dist/quill.bubble.css";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { app } from "@/utils/firebase";
 const storage = getStorage(app);
+import dynamic from "next/dynamic";
+import axios from "@/app/axios";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const WritePage = () => {
-  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [media, setMedia] = useState("");
@@ -72,18 +73,20 @@ const WritePage = () => {
       .replace(/^-+|-+$/g, "");
 
   const handleSubmit = async () => {
-    const res = await fetch(`/api/posts`, {
-      method: "POST",
-      body: JSON.stringify({
+    try {
+      const res = await axios.post(`/api/posts`, {
         title,
         desc: value,
         img: media,
         slug: slugify(title),
         catSlug: "fashion",
-      }),
-    });
-    console.log(res);
+      });
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
     <div className={styles.container}>
       <input

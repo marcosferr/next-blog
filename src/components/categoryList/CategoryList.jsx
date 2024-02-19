@@ -2,17 +2,20 @@ import Link from "next/link";
 import styles from "./categoryList.module.css";
 import Image from "next/image";
 
-const getData = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/categories`, {
-    cache: "no-store",
-  });
+import axios from "@/app/axios";
 
-  if (!res.ok) {
+const getData = async () => {
+  try {
+    const response = await axios.get("categories", {
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
     throw new Error("Something went wrong!");
   }
-
-  const data = await res.json();
-  return data;
 };
 
 const CategoryList = async () => {
