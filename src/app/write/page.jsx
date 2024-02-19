@@ -74,7 +74,7 @@ const WritePage = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post(`/api/posts`, {
+      const res = await axios.post(`posts`, {
         title,
         desc: value,
         img: media,

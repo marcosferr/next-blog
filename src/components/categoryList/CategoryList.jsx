@@ -6,11 +6,7 @@ import axios from "@/app/axios";
 
 const getData = async () => {
   try {
-    const response = await axios.get("categories", {
-      headers: {
-        "Cache-Control": "no-store",
-      },
-    });
+    const response = await axios.get("categories");
 
     return response.data;
   } catch (error) {

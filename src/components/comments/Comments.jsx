@@ -20,7 +20,7 @@ const Comments = ({ postSlug }) => {
   const { status } = useSession();
 
   const { data, mutate, isLoading } = useSWR(
-    `/api/comments?postSlug=${postSlug}`,
+    `comments?postSlug=${postSlug}`,
     fetcher
   );
 
@@ -29,7 +29,7 @@ const Comments = ({ postSlug }) => {
   const handleSubmit = async () => {
     setDesc("");
     try {
-      await axios.post("/api/comments", { desc, postSlug });
+      await axios.post("comments", { desc, postSlug });
       mutate();
     } catch (error) {
       console.error(error);
