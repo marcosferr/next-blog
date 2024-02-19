@@ -7,21 +7,22 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import axios from "@/app/axios";
 
+const fetcher = async (url) => {
+  try {
+    const response = await axios.get(url);
+
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 const Comments = ({ postSlug }) => {
-  const fetcher = async (url) => {
-    try {
-      const response = await axios.get(url);
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  };
   const { status } = useSession();
 
   const { data, mutate, isLoading, error } = useSWR(
     `comments?postSlug=${postSlug}`,
-    fetcher
+    fetcher,
+    { revalidateOnFocus: false }
   );
 
   const [desc, setDesc] = useState("");
