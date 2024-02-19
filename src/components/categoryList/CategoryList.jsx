@@ -10,7 +10,7 @@ const getData = async () => {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    throw new Error("Something went wrong!");
+    throw new Error("Error", error.message);
   }
 };
 
