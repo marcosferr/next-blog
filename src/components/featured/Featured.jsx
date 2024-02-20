@@ -10,18 +10,26 @@ const Featured = () => {
       </h1>
       <div className={styles.post}>
         <div className={styles.imgContainer}>
-          <Image src="/p1.jpeg" alt="post" fill className={styles.image} />
+          <Image
+            src="/programador.jpg"
+            alt="post"
+            fill
+            className={styles.image}
+          />
         </div>
         <div className={styles.textContainer}>
           <h2 className={styles.postTitle}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Estas aprendiendo a programar?, necesitas ayuda?, estas en el lugar
+            correcto
           </h2>
           <p className={styles.postDesc}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio non
-            quae ipsum provident nulla error, ullam sapiente voluptates quo
-            neque et molestias quia, in eaque unde impedit culpa ducimus porro.
+            Este blog es un espacio lleno de recursos para tu camino en
+            desarrollo. Aquí encontrarás tutoriales, tips, consejos y mucho más.
+            Sientete libre de explorar y aprender.
           </p>
-          <button className={styles.button}>Read more</button>
+          <a className={styles.button} href="#recent">
+            Leer mas
+          </a>
         </div>
       </div>
     </div>

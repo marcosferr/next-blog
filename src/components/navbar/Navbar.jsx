@@ -16,13 +16,13 @@ const Navbar = () => {
       <div className={styles.links}>
         <ThemeToggle />
         <Link href="/" className={styles.link}>
-          Homepage
+          Inicio
         </Link>
         <Link href="/" className={styles.link}>
-          Contact
+          Contacto
         </Link>
         <Link href="/" className={styles.link}>
-          About
+          Acerca
         </Link>
         <AuthLinks />
       </div>

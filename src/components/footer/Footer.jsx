@@ -12,10 +12,8 @@ const Footer = () => {
           <h1 className={styles.logoText}> Aprendiz Blog </h1>
         </div>
         <p className={styles.desc}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et molestias
-          reprehenderit consequatur repellendus placeat voluptatibus ipsam sit
-          quibusdam expedita, a amet harum voluptatem porro soluta asperiores at
-          totam optio tenetur!
+          Puedes enterarte de las últimas noticias, tendencias en programación,
+          y tecnologias siguiendo nuestras redes sociales
         </p>
         <div className={styles.icons}>
           <Image src="/facebook.png" alt="facebook" width={18} height={18} />
@@ -27,17 +25,17 @@ const Footer = () => {
       <div className={styles.links}>
         <div className={styles.list}>
           <span className={styles.listTitle}>Links</span>
-          <Link href="/">Homepage</Link>
+          <Link href="/">Inicio</Link>
           <Link href="/">Blog</Link>
-          <Link href="/">About</Link>
-          <Link href="/">Contact</Link>
+          <Link href="/">Acerca</Link>
+          <Link href="/">Contacto</Link>
         </div>
         <div className={styles.list}>
           <span className={styles.listTitle}>Tags</span>
-          <Link href="/">Style</Link>
-          <Link href="/">Fashion</Link>
-          <Link href="/">Coding</Link>
-          <Link href="/">Travel</Link>
+          <Link href="/">Tutoriales</Link>
+          <Link href="/">Inteligencia Artificial</Link>
+          <Link href="/">Recursos</Link>
+          <Link href="/">Tecnologia</Link>
         </div>
         <div className={styles.list}>
           <span className={styles.listTitle}>Social</span>

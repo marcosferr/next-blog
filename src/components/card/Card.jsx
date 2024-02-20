@@ -19,7 +19,7 @@ const Card = ({ key, item }) => {
         </Link>
 
         <Link href={`/posts/${item.slug}`} className={styles.link}>
-          Read More
+          Leer mas
         </Link>
       </div>
     </div>

@@ -10,7 +10,7 @@ import axios from "@/app/axios";
 const getData = async (slug) => {
   try {
     const response = await axios.get(`comments/?postSlug=${slug}`);
-    console.log(response);
+
     return response.data;
   } catch (error) {
     console.error(error);
@@ -44,15 +44,14 @@ const Comments = ({ postSlug }) => {
 
   if (!data) return <div>Loading...</div>;
 
-  if (data.length === 0) return <div>No comments yet</div>;
-
+  console.log(status);
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}> Comments</h1>
+      <h1 className={styles.title}> Comentarios</h1>
       {status === "authenticated" ? (
         <div className={styles.write}>
           <textarea
-            placeholder="write a comment..."
+            placeholder="deja un comentario..."
             className={styles.input}
             onChange={(e) => {
               setDesc(e.target.value);
@@ -60,11 +59,11 @@ const Comments = ({ postSlug }) => {
             value={desc}
           />
           <button className={styles.button} onClick={handleSubmit}>
-            Send
+            Enviar
           </button>
         </div>
       ) : (
-        <Link href="/login"> Login to leave a comment </Link>
+        <Link href="/login"> Inicia sesion para comentar </Link>
       )}
 
       <div className={styles.comments}>
