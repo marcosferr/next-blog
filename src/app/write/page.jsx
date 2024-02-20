@@ -79,7 +79,7 @@ const WritePage = () => {
         desc: value,
         img: media,
         slug: slugify(title),
-        catSlug: "fashion",
+        catSlug: "tecnologia",
       });
       console.log(res);
     } catch (error) {

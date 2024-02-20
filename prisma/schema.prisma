@@ -47,6 +47,7 @@ model User {
   sessions      Session[]
   Post          Post[]
   Comment       Comment[]
+  password      String?
 }
 
 model VerificationToken {

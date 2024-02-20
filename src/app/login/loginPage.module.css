@@ -37,6 +37,39 @@
   background-color: #3b5998;
 }
 
+.or {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  color: var(--textColor);
+}
+
+.input {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  color: var(--textColor);
+  font-weight: 600;
+}
+
+.submit {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: blueviolet;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 @media screen and (max-width: 768px) {
   .wrapper {
     padding: 50px 100px;

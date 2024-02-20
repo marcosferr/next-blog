@@ -11,6 +11,19 @@ const LoginPage = () => {
   if (status === "authenticated") {
     router.push("/");
   }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+    });
+    console.log(result);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -19,6 +32,26 @@ const LoginPage = () => {
         </div>
         <div className={styles.socialButton}>Sign in with Github</div>
         <div className={styles.socialButton}>Sign in with Facebook</div>
+
+        <div className={styles.or}>or</div>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className={styles.input}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className={styles.input}
+          />
+          <button type="submit" className={styles.submit}>
+            Sign in
+          </button>
+        </form>
       </div>
     </div>
   );
